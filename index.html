@@ -3,27 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com 'unsafe-inline'; img-src 'self' https: data:; media-src 'self'; font-src 'self' https://fonts.gstatic.com data:; frame-src https://www.google.com https://www.google.com/maps; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
     <title>BLFit | Una Experiencia a Otro Nivel</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="assets/css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
 </head>
 <body>
 
     <header>
         <nav class="navbar">
-            <div class="logo">BL<span>FIT</span></div>
+            <div class="logo" aria-label="Logo BLFit">
+                <img src="assets/media/logoC.png" alt="Logo BLFit" class="navbar-logo">
+            </div>
             <ul class="nav-links">
                 <li><a href="#inicio">Inicio</a></li>
                 <li><a href="#servicios">Servicios</a></li>
                 <li><a href="#futbol">Fútbol Pro</a></li>
-                <li><a href="#contacto" class="btn-primary">Unirse ahora</a></li>
+                <li><a href="#videos">Videos</a></li>
+                <li><a href="#" id="join-now-trigger" class="btn-primary" data-whatsapp-url="https://wa.me/593963410492?text=Hola%20BLFit%2C%20quiero%20informacion%20para%20unirme">Unirse ahora</a></li>
             </ul>
         </nav>
     </header>
 
+    <div id="whatsapp-modal" class="modal" aria-hidden="true">
+        <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="modal-title" aria-describedby="modal-description">
+            <button type="button" class="modal-close" id="modal-close" aria-label="Cerrar popup">&times;</button>
+            <h3 id="modal-title">Redireccionar a WhatsApp</h3>
+            <p id="modal-description">Te vamos a redirigir a WhatsApp para que puedas escribirnos y unirte a BLFit.</p>
+            <div class="modal-actions">
+                <button type="button" class="modal-btn modal-cancel" id="modal-cancel">Cancelar</button>
+                <button type="button" class="modal-btn modal-confirm" id="modal-confirm">Continuar</button>
+            </div>
+        </div>
+    </div>
+
     <section id="inicio" class="hero">
         <div class="hero-content">
-            <h1>UNA EXPERIENCIA A <br><span>OTRO NIVEL</span></h1>
+            <img src="assets/media/logo.png" alt="Logo BLFit" class="hero-logo">
             <p>Musculación de élite, Boxeo, Spinning y Preparación Física Profesional.</p>
             <a href="#servicios" class="btn-main">Ver Disciplinas</a>
         </div>
@@ -54,6 +72,50 @@
         </div>
     </section>
 
+    <section id="videos" class="container">
+        <h2 class="section-title">Conoce BLFit en Acción</h2>
+        <div class="video-carousel" aria-label="Carrusel de videos del gimnasio">
+            <button class="carousel-btn prev" type="button" aria-label="Video anterior">&#10094;</button>
+            <div class="carousel-viewport">
+                <div class="carousel-track">
+                    <article class="carousel-slide is-active">
+                        <video loop playsinline preload="metadata" controls>
+                            <source src="assets/media/VID-20260311-WA0007.mp4" type="video/mp4">
+                            Tu navegador no soporta videos HTML5.
+                        </video>
+                    </article>
+                    <article class="carousel-slide">
+                        <video loop playsinline preload="metadata" controls>
+                            <source src="assets/media/VID-20260311-WA0008.mp4" type="video/mp4">
+                            Tu navegador no soporta videos HTML5.
+                        </video>
+                    </article>
+                    <article class="carousel-slide">
+                        <video loop playsinline preload="metadata" controls>
+                            <source src="assets/media/VID-20260311-WA0009.mp4" type="video/mp4">
+                            Tu navegador no soporta videos HTML5.
+                        </video>
+                    </article>
+                </div>
+            </div>
+            <button class="carousel-btn next" type="button" aria-label="Video siguiente">&#10095;</button>
+        </div>
+        <div class="carousel-dots" role="tablist" aria-label="Navegación de videos">
+            <button class="dot is-active" type="button" aria-label="Ir al video 1" data-index="0"></button>
+            <button class="dot" type="button" aria-label="Ir al video 2" data-index="1"></button>
+            <button class="dot" type="button" aria-label="Ir al video 3" data-index="2"></button>
+        </div>
+
+        <div class="horizontal-gallery" aria-label="Galería horizontal de imágenes">
+            <div class="horizontal-images">
+                <img src="assets/media/img1.jpg" alt="Galería imagen 1" class="gallery-img">
+                <img src="assets/media/img2.jpg" alt="Galería imagen 2" class="gallery-img">
+                <img src="assets/media/img3.jpg" alt="Galería imagen 3" class="gallery-img">
+                <img src="assets/media/img4.jpg" alt="Galería imagen 4" class="gallery-img">
+            </div>
+        </div>
+    </section>
+
     <footer>
         <section id="horarios" class="container bg-dark">
         <h2 class="section-title">Horarios de Entrenamiento</h2>
@@ -69,13 +131,13 @@
                 <tbody>
                     <tr>
                         <td>Musculación</td>
-                        <td>06:00 - 22:00</td>
+                        <td>06:00 - 13:00 / 15:00 - 22:00</td>
                         <td>08:00 - 16:00</td>
                     </tr>
                     <tr>
                         <td>Box / Kick Boxing</td>
-                        <td>18:00 - 20:00</td>
-                        <td>10:00 - 12:00</td>
+                        <td>15:00 - 22:00</td>
+                        <td></td>
                     </tr>
                     <tr>
                         <td>Spinning</td>
@@ -96,13 +158,16 @@
         <h2 class="section-title">Encuéntranos</h2>
         <div class="map-container">
             <iframe 
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15953.565457367856!2d-78.632986!3d-1.254354!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x91d3820252119335%3A0xc486259f6d49826d!2sAmbato!5e0!3m2!1ses!2sec!4v1700000000000!5m2!1ses!2sec" 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.710394905458!2d-78.61935732523645!3d-1.3502879356989792!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x91d39d00000e2a7b%3A0xdbd1f25c17719c24!2sBL%20Fit!5e0!3m2!1ses!2sec!4v1773677609073!5m2!1ses!2sec" 
                 width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy">
             </iframe>
         </div>
     </section>
         <p>&copy; 2026 BLFit Gym - Todos los derechos reservados.</p>
     </footer>
+
+    <script src="assets/js/main.js" defer></script>
+    <script src="assets/js/security.js" defer></script>
 
 </body>
 </html>
