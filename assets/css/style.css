@@ -17,6 +17,7 @@ body {
     background-color: var(--negro-fondo);
     color: var(--blanco);
     line-height: 1.6;
+    overflow-x: hidden;
 }
 
 /* Navbar */
@@ -24,11 +25,12 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px 10%;
+    padding: 16px clamp(16px, 5vw, 10%);
     background: rgba(0, 0, 0, 0.9);
     position: fixed;
     width: 100%;
     z-index: 1000;
+    gap: 16px;
 }
 
 .logo {
@@ -42,13 +44,36 @@ body {
     display: block;
 }
 
+.nav-toggle {
+    display: none;
+    width: 42px;
+    height: 42px;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 8px;
+    background: transparent;
+    cursor: pointer;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+
+.nav-toggle span {
+    width: 20px;
+    height: 2px;
+    background: var(--blanco);
+    display: block;
+}
+
 .nav-links {
     list-style: none;
     display: flex;
+    align-items: center;
+    gap: 16px;
 }
 
 .nav-links li {
-    margin-left: 25px;
+    margin-left: 0;
 }
 
 .nav-links a {
@@ -64,7 +89,8 @@ body {
 
 /* Hero Section */
 .hero {
-    height: 100vh;
+    min-height: 100svh;
+    height: auto;
     background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
                 url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=1350&q=80'); /* Imagen de fondo genérica */
     background-size: cover;
@@ -73,6 +99,7 @@ body {
     align-items: center;
     justify-content: center;
     text-align: center;
+    padding: 110px 16px 48px;
 }
 
 .hero-content {
@@ -86,6 +113,11 @@ body {
     height: auto;
     margin-bottom: 30px;
     filter: drop-shadow(0 10px 25px rgba(0, 0, 0, 0.45));
+}
+
+.hero-content p {
+    max-width: 780px;
+    font-size: clamp(1rem, 2.2vw, 1.35rem);
 }
 
 .hero-content h1 {
@@ -111,12 +143,12 @@ body {
 
 /* Grid de Servicios */
 .container {
-    padding: 80px 10%;
+    padding: clamp(56px, 8vw, 80px) clamp(16px, 5vw, 10%);
 }
 
 .section-title {
     text-align: center;
-    font-size: 2.5rem;
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
     margin-bottom: 50px;
 }
 
@@ -128,7 +160,7 @@ body {
 
 .card {
     background: var(--gris-oscuro);
-    padding: 40px;
+    padding: clamp(22px, 4vw, 40px);
     border-radius: 10px;
     border-bottom: 5px solid var(--rojo-principal);
     transition: transform 0.3s;
@@ -152,7 +184,7 @@ body {
 
 /* Carrusel de videos */
 .video-carousel {
-    max-width: 520px;
+    width: min(100%, 520px);
     margin: 0 auto;
     position: relative;
 }
@@ -250,11 +282,12 @@ body {
 
 .horizontal-images {
     display: grid;
-    grid-template-columns: repeat(2, minmax(320px, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 16px;
     align-items: stretch;
     justify-items: center;
-    width: 100%;
+    width: min(100%, 980px);
+    margin: 0 auto;
 }
 
 .horizontal-image-slot {
@@ -272,7 +305,7 @@ body {
 
 .gallery-img {
     width: 100%;
-    height: 320px;
+    height: clamp(190px, 28vw, 320px);
     object-fit: cover;
     border-radius: 12px;
     display: block;
@@ -286,14 +319,42 @@ body {
     box-shadow: 0 18px 40px rgba(0, 0, 0, 0.65);
 }
 
-@media (max-width: 768px) {
+@media (max-width: 900px) {
+    .nav-toggle {
+        display: inline-flex;
+    }
+
+    .nav-links {
+        position: absolute;
+        top: 100%;
+        right: 16px;
+        left: 16px;
+        background: rgba(8, 8, 8, 0.98);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 12px;
+        padding: 12px;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 8px;
+        display: none;
+    }
+
+    .nav-links.is-open {
+        display: flex;
+    }
+
+    .nav-links a {
+        display: block;
+        padding: 10px 8px;
+    }
+
     .horizontal-images {
         grid-template-columns: 1fr;
         gap: 12px;
     }
 
     .gallery-img {
-        height: 200px;
+        height: 220px;
     }
 }
 
@@ -433,11 +494,6 @@ tr:hover {
         margin-bottom: 20px;
     }
 
-    .hero-content h1 {
-        font-size: 2.4rem;
-        line-height: 1.2;
-    }
-
     .carousel-btn {
         width: 38px;
         height: 38px;
@@ -454,9 +510,5 @@ tr:hover {
 
     .video-carousel {
         max-width: 92vw;
-    }
-
-    .horizontal-image-slot {
-        min-height: 150px;
     }
 }

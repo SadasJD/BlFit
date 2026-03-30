@@ -1,6 +1,35 @@
 (function () {
     'use strict';
 
+    const initMobileNav = () => {
+        const toggle = document.getElementById('nav-toggle');
+        const links = document.getElementById('nav-links');
+
+        if (!toggle || !links) {
+            return;
+        }
+
+        const closeMenu = () => {
+            links.classList.remove('is-open');
+            toggle.setAttribute('aria-expanded', 'false');
+        };
+
+        toggle.addEventListener('click', () => {
+            const isOpen = links.classList.toggle('is-open');
+            toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+        });
+
+        links.querySelectorAll('a').forEach((link) => {
+            link.addEventListener('click', closeMenu);
+        });
+
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 900) {
+                closeMenu();
+            }
+        });
+    };
+
     const initCarousel = () => {
         const carousel = document.querySelector('.video-carousel');
         if (!carousel) {
@@ -120,6 +149,7 @@
         });
     };
 
+    initMobileNav();
     initCarousel();
     initWhatsAppModal();
 })();
