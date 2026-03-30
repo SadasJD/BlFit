@@ -45,7 +45,7 @@ body {
 }
 
 .nav-toggle {
-    display: none;
+    display: inline-flex;
     width: 42px;
     height: 42px;
     border: 1px solid rgba(255, 255, 255, 0.25);
@@ -67,9 +67,18 @@ body {
 
 .nav-links {
     list-style: none;
-    display: flex;
-    align-items: center;
-    gap: 16px;
+    position: absolute;
+    top: 100%;
+    right: 16px;
+    left: 16px;
+    background: rgba(8, 8, 8, 0.98);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 12px;
+    padding: 12px;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+    display: none;
 }
 
 .nav-links li {
@@ -81,10 +90,16 @@ body {
     color: var(--blanco);
     font-weight: 700;
     transition: 0.3s;
+    display: block;
+    padding: 10px 8px;
 }
 
 .nav-links a:hover {
     color: var(--rojo-principal);
+}
+
+.nav-links.is-open {
+    display: flex;
 }
 
 /* Hero Section */
@@ -320,32 +335,9 @@ body {
 }
 
 @media (max-width: 900px) {
-    .nav-toggle {
-        display: inline-flex;
-    }
-
     .nav-links {
-        position: absolute;
-        top: 100%;
-        right: 16px;
-        left: 16px;
-        background: rgba(8, 8, 8, 0.98);
-        border: 1px solid rgba(255, 255, 255, 0.12);
-        border-radius: 12px;
-        padding: 12px;
-        flex-direction: column;
-        align-items: stretch;
-        gap: 8px;
-        display: none;
-    }
-
-    .nav-links.is-open {
-        display: flex;
-    }
-
-    .nav-links a {
-        display: block;
-        padding: 10px 8px;
+        left: 12px;
+        right: 12px;
     }
 
     .horizontal-images {
@@ -355,6 +347,28 @@ body {
 
     .gallery-img {
         height: 220px;
+    }
+}
+
+@media (min-width: 901px) {
+    .nav-toggle {
+        display: none;
+    }
+
+    .nav-links {
+        position: static;
+        background: transparent;
+        border: 0;
+        border-radius: 0;
+        padding: 0;
+        flex-direction: row;
+        align-items: center;
+        gap: 16px;
+        display: flex;
+    }
+
+    .nav-links a {
+        padding: 0;
     }
 }
 

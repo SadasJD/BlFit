@@ -107,7 +107,7 @@
             return;
         }
 
-        const whatsappUrl = trigger.dataset.whatsappUrl;
+        const whatsappUrl = trigger.dataset.whatsappUrl || '/api/whatsapp-redirect';
 
         const openModal = () => {
             modal.classList.add('is-open');
